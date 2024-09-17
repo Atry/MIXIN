@@ -1,0 +1,433 @@
+{
+  "allMixinKeys": [
+    "tests"
+  ],
+  "allPropertySnapshots": {
+    "src": {
+      "allMixinKeys": [
+        "tests/src"
+      ],
+      "allPropertySnapshots": {
+        "baz": {
+          "allMixinKeys": [
+            "tests/src/baz"
+          ],
+          "allPropertySnapshots": {
+            "bar": {
+              "allMixinKeys": [
+                "tests/src/baz/bar"
+              ],
+              "allPropertySnapshots": {
+                "xxx": {
+                  "allMixinKeys": [
+                    "tests/src/baz/bar/xxx"
+                  ],
+                  "allPropertySnapshots": {
+                    "yyy": {
+                      "allMixinKeys": [
+                        "tests/src/baz/bar/xxx/yyy"
+                      ],
+                      "allPropertySnapshots": {
+                        "zzz": {
+                          "allMixinKeys": [
+                            "{\"position\":[],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                          ],
+                          "allPropertySnapshots": {
+                            "c": {
+                              "allMixinKeys": [
+                                "{\"position\":[\"c\"],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                              ],
+                              "allPropertySnapshots": {
+                                "d": {
+                                  "allMixinKeys": [
+                                    "{\"position\":[\"c\",\"d\"],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                                  ],
+                                  "allPropertySnapshots": {
+                                    "f": {
+                                      "allMixinKeys": [
+                                        "{\"position\":[\"c\",\"d\",\"f\"],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                                      ],
+                                      "allPrimitives": [
+                                        100
+                                      ],
+                                      "ownMixinKeys": [
+                                        "{\"position\":[\"c\",\"d\",\"f\"],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                                      ]
+                                    }
+                                  },
+                                  "ownMixinKeys": [
+                                    "{\"position\":[\"c\",\"d\"],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                                  ]
+                                }
+                              },
+                              "ownMixinKeys": [
+                                "{\"position\":[\"c\"],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                              ]
+                            }
+                          },
+                          "ownMixinKeys": [
+                            "{\"position\":[],\"sourceFile\":\"tests/src/baz/bar/xxx/yyy/zzz.mixin.toml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "tests/src/baz/bar/xxx/yyy"
+                      ]
+                    }
+                  },
+                  "ownMixinKeys": [
+                    "tests/src/baz/bar/xxx"
+                  ]
+                }
+              },
+              "ownMixinKeys": [
+                "tests/src/baz/bar"
+              ]
+            }
+          },
+          "ownMixinKeys": [
+            "tests/src/baz"
+          ]
+        },
+        "foo": {
+          "allMixinKeys": [
+            "tests/src/foo",
+            "{\"position\":[],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+          ],
+          "allPropertySnapshots": {
+            "bar": {
+              "allMixinKeys": [
+                "{\"position\":[],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}",
+                "{\"position\":[\"bar\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+              ],
+              "allPropertySnapshots": {
+                "a": {
+                  "allMixinKeys": [
+                    "{\"position\":[\"a\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                  ],
+                  "allPropertySnapshots": {
+                    "b": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"a\",\"b\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                      ],
+                      "allPrimitives": [
+                        1
+                      ],
+                      "ownMixinKeys": [
+                        "{\"position\":[\"a\",\"b\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                      ]
+                    }
+                  },
+                  "ownMixinKeys": [
+                    "{\"position\":[\"a\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                  ]
+                },
+                "baz": {
+                  "allMixinKeys": [
+                    "{\"position\":[\"bar\",\"1\",\"baz\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                  ],
+                  "allPrimitives": [
+                    "qux"
+                  ],
+                  "ownMixinKeys": [
+                    "{\"position\":[\"bar\",\"1\",\"baz\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                  ]
+                },
+                "sub": {
+                  "allMixinKeys": [
+                    "{\"position\":[\"bar\",\"2\",\"sub\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                    "{\"position\":[\"a\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                  ],
+                  "allPropertySnapshots": {
+                    "b": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"a\",\"b\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                      ],
+                      "allPrimitives": [
+                        1
+                      ],
+                      "ownMixinKeys": [
+                        "{\"position\":[\"a\",\"b\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                      ]
+                    },
+                    "c": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"bar\",\"2\",\"sub\",\"2\",\"c\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"a\",\"b\"],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}"
+                      ],
+                      "allPrimitives": [
+                        1
+                      ],
+                      "ownMixinKeys": [
+                        "{\"position\":[\"bar\",\"2\",\"sub\",\"2\",\"c\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    }
+                  },
+                  "ownMixinKeys": [
+                    "{\"position\":[\"bar\",\"2\",\"sub\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                  ]
+                }
+              },
+              "ownMixinKeys": [
+                "{\"position\":[],\"sourceFile\":\"tests/src/foo/bar.mixin.json\"}",
+                "{\"position\":[\"bar\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+              ]
+            },
+            "test_late_binding": {
+              "allMixinKeys": [
+                "{\"position\":[\"test_late_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+              ],
+              "allPropertySnapshots": {
+                "my_mixin1": {
+                  "allMixinKeys": [
+                    "{\"position\":[\"test_late_binding\",\"my_mixin1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                  ],
+                  "allPropertySnapshots": {
+                    "early_binding": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"2\",\"early_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"2\",\"early_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    },
+                    "inner": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    },
+                    "late_binding": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"3\",\"late_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"3\",\"late_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    },
+                    "late_binding_too": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"4\",\"late_binding_too\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"4\",\"late_binding_too\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    }
+                  },
+                  "ownMixinKeys": [
+                    "{\"position\":[\"test_late_binding\",\"my_mixin1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                  ]
+                },
+                "my_mixin2": {
+                  "allMixinKeys": [
+                    "{\"position\":[\"test_late_binding\",\"my_mixin2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                    "{\"position\":[\"test_late_binding\",\"my_mixin1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                  ],
+                  "allPropertySnapshots": {
+                    "early_binding": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"2\",\"early_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"2\",\"early_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    },
+                    "inner": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        },
+                        "field2": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\",\"field2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value2"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\",\"field2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    },
+                    "late_binding": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"3\",\"late_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        },
+                        "field2": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\",\"field2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value2"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\",\"field2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"3\",\"late_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    },
+                    "late_binding_too": {
+                      "allMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"4\",\"late_binding_too\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}",
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ],
+                      "allPropertySnapshots": {
+                        "field1": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value1"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"1\",\"inner\",\"field1\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        },
+                        "field2": {
+                          "allMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\",\"field2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ],
+                          "allPrimitives": [
+                            "value2"
+                          ],
+                          "ownMixinKeys": [
+                            "{\"position\":[\"test_late_binding\",\"my_mixin2\",\"2\",\"inner\",\"field2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                          ]
+                        }
+                      },
+                      "ownMixinKeys": [
+                        "{\"position\":[\"test_late_binding\",\"my_mixin1\",\"4\",\"late_binding_too\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                      ]
+                    }
+                  },
+                  "ownMixinKeys": [
+                    "{\"position\":[\"test_late_binding\",\"my_mixin2\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+                  ]
+                }
+              },
+              "ownMixinKeys": [
+                "{\"position\":[\"test_late_binding\"],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+              ]
+            }
+          },
+          "ownMixinKeys": [
+            "tests/src/foo",
+            "{\"position\":[],\"sourceFile\":\"tests/src/foo.mixin.yaml\"}"
+          ]
+        }
+      },
+      "ownMixinKeys": [
+        "tests/src"
+      ]
+    }
+  },
+  "ownMixinKeys": [
+    "tests"
+  ]
+}

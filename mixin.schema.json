@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "MIXIN Language Schema",
+  "$ref": "#/definitions/mixin",
+  "definitions": {
+    "reference": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "A MIXIN reference, represented as an array of strings."
+    },
+    "properties": {
+      "type": "object",
+      "description": "A collection of property definitions.",
+      "additionalProperties": {
+        "$ref": "#/definitions/mixin"
+      }
+    },
+    "inheritancesAndOwnProperties": {
+      "type": "array",
+      "description": "An array representing a combination of super mixins, properties, or nested structures.",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/reference"
+          },
+          {
+            "$ref": "#/definitions/properties"
+          },
+          {
+            "$ref": "#/definitions/inheritancesAndOwnProperties"
+          }
+        ]
+      }
+    },
+    "mixin": {
+      "description": "A mixin",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/reference"
+        },
+        {
+          "$ref": "#/definitions/properties"
+        },
+        {
+          "$ref": "#/definitions/inheritancesAndOwnProperties"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}
