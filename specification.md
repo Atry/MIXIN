@@ -90,7 +90,7 @@ As a configuration language, MIXIN excels in defining complex systems with inter
 
 The following example demonstrates how to use MIXIN to define a basic arithmetic operation represented as an AST:
 
-````yaml
+```yaml
 # math_operations.mixin.yaml
 
 Number:
