@@ -124,10 +124,10 @@ in
               }
             else if builtins.isList ast then
               let
-                # A reference is a list of strings
-                isReference = ast != [ ] && builtins.all builtins.isString ast;
+                # An inheritance is a list of strings
+                isInheritance = ast != [ ] && builtins.all builtins.isString ast;
               in
-              if isReference then
+              if isInheritance then
                 {
                   inheritances =
                     let

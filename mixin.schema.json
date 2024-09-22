@@ -3,13 +3,13 @@
   "title": "MIXIN Language Schema",
   "$ref": "#/definitions/mixin",
   "definitions": {
-    "reference": {
+    "inheritance": {
       "type": "array",
       "items": {
         "type": "string"
       },
       "minItems": 1,
-      "description": "A MIXIN reference, represented as an array of strings."
+      "description": "An inheritance, represented as an array of strings."
     },
     "properties": {
       "type": "object",
@@ -18,19 +18,19 @@
         "$ref": "#/definitions/mixin"
       }
     },
-    "inheritancesAndOwnProperties": {
+    "inheritanceAndOwnProperties": {
       "type": "array",
       "description": "An array representing a combination of super mixins, properties, or nested structures.",
       "items": {
         "oneOf": [
           {
-            "$ref": "#/definitions/reference"
+            "$ref": "#/definitions/inheritance"
           },
           {
             "$ref": "#/definitions/properties"
           },
           {
-            "$ref": "#/definitions/inheritancesAndOwnProperties"
+            "$ref": "#/definitions/inheritanceAndOwnProperties"
           }
         ]
       }
@@ -39,13 +39,13 @@
       "description": "A mixin",
       "oneOf": [
         {
-          "$ref": "#/definitions/reference"
+          "$ref": "#/definitions/inheritance"
         },
         {
           "$ref": "#/definitions/properties"
         },
         {
-          "$ref": "#/definitions/inheritancesAndOwnProperties"
+          "$ref": "#/definitions/inheritanceAndOwnProperties"
         },
         {
           "type": "string"

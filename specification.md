@@ -42,7 +42,7 @@ Functional programming languages like Haskell and Scala emphasize immutability a
 
 - **Complexity of Context Management**: In functional programming, managing context, such as state or environment, often requires explicit passing of context through function parameters or using monads, which can make code verbose and harder to maintain.
 
-  - **MIXIN Solution**: MIXIN simplifies context management by allowing mixins to automatically inherit and reference properties from their lexical scope. This means that shared context or state can be accessed without the need for explicit parameter passing or complex monadic structures. The unified scoping and referencing rules in MIXIN reduce boilerplate code and make the logic more straightforward.
+  - **MIXIN Solution**: MIXIN simplifies context management by allowing mixins to automatically inherit and access properties from their lexical scope. This means that shared context or state can be accessed without the need for explicit parameter passing or complex monadic structures. The unified scoping and inheritance rules in MIXIN reduce boilerplate code and make the logic more straightforward.
 
 - **The Expression Problem**: The Expression Problem refers to the difficulty of extending both the set of data types and the set of operations over them in a type-safe and modular way. In functional languages, adding new data types is straightforward, but adding new operations can be challenging without modifying existing code.
 
@@ -62,9 +62,9 @@ Declarative configuration languages like JSON, YAML, and Nix are widely used to 
 
   - **MIXIN Solution**: MIXIN enables modular and reusable configuration components through its mixin system. Each mixin can encapsulate a piece of configuration or logic, which can then be combined and reused in different contexts. This modular approach not only improves maintainability but also allows for the creation of complex configurations by composing simpler, reusable mixins.
 
-- **Difficulty in Representing Relationships**: Declarative configuration languages often lack the ability to represent complex relationships between different parts of a configuration. Dependencies, references, and relationships must be managed manually, which can lead to errors and inconsistencies.
+- **Difficulty in Representing Relationships**: Declarative configuration languages often lack the ability to represent complex relationships between different parts of a configuration. Dependencies and relationships must be managed manually, which can lead to errors and inconsistencies.
 
-  - **MIXIN Solution**: MIXIN uses references to represent relationships between mixins, enabling clear and maintainable configurations. By using a unified reference and inheritance model, MIXIN allows for the automatic resolution of dependencies and relationships, reducing the risk of errors and inconsistencies.
+  - **MIXIN Solution**: MIXIN uses inheritance to represent relationships between mixins, enabling clear and maintainable configurations. By using a unified inheritance model, MIXIN allows for the automatic resolution of dependencies and relationships, reducing the risk of errors and inconsistencies.
 
 - **Limited Expressiveness for Code Generation**: While declarative languages like Nix provide some level of code generation through lazy evaluation and functional constructs, they are primarily designed for configuration management and package management. Extending them for general-purpose code generation or complex logical expressions can be cumbersome.
 
@@ -104,8 +104,8 @@ add:
 multiply:
   - [Number] # Inherits from the 'Number' mixin.
   - multiplicand: [Number] # Property 'multiplicand', which is a 'Number'.
-  - multiplier: [Number] # Property 'multiplier', which is also a 'Number'.```
-````
+  - multiplier: [Number] # Property 'multiplier', which is also a 'Number'.
+```
 
 ```yaml
 # test.mixin.yaml
@@ -159,7 +159,7 @@ The primitive data types in MIXIN correspond directly to JSON’s scalar types:
 
 In MIXIN, the primary data type is the mixin itself, which corresponds to JSON objects. Each mixin represents a collection of properties and can inherit from other mixins, enabling complex compositions and configurations.
 
-- **Mixin**: Corresponds to a JSON object, with each key representing a property name and each value representing a mixin, primitive type, or a reference to another mixin.
+- **Mixin**: Corresponds to a JSON object, with each key representing a property name and each value representing a mixin, primitive type, or an inheritance to another mixin.
 
   Example:
 
@@ -194,7 +194,7 @@ Unlike JSON, MIXIN does not support lists as a first-class type within the langu
 Properties are the fundamental components of a mixin, defining its internal state or behavior. The value of a property can be one of the following types:
 
 1. **Basic Data Types**: Strings, numbers, booleans, or null.
-2. **References (Inheritance)**: Properties can reference other mixins by specifying their path, allowing for inheritance and reuse of existing mixins.
+2. **Inheritance**: Properties can inherit other mixins by specifying their path, allowing for inheritance and reuse of existing mixins.
 
 #### Property Definition Syntax
 
@@ -226,15 +226,15 @@ person_with_address:
   - address: [Address] # Adds an 'address' property using the 'Address' mixin
 ```
 
-In this example, the `person_with_address` mixin inherits from `Person` and includes a nested `address` property that references the `Address` mixin.
+In this example, the `person_with_address` mixin inherits from `Person` and includes a nested `address` property that inherits the `Address` mixin.
 
-### 2.3 References and Inheritance
+### 2.3 Inheritance
 
-In MIXIN, references and inheritance are equivalent concepts. By referencing another mixin, the current mixin inherits all properties and scalar values from the referenced mixin. A reference is represented as an array of strings that indicate the path to the target mixin.
+In MIXIN, inheritance is the mechanism by which the current mixin inherits all properties and scalar values from another mixin. An inheritance is represented as an array of strings that indicate the path to the target mixin.
 
 #### Grouping Property Definitions in Lists
 
-When defining a mixin, you can optionally put properties in lists, i.e. the `-` symbol in YAML, to indicate the hierarchical structure of properties. When a mixin inherits from other mixins, properties must be prefixed with `-` to avoid confusion between inheritance chains and property declarations. This prefix is optional when there is no inheritance.
+When defining a mixin, you can optionally put properties in lists (i.e., using the `-` symbol in YAML) to indicate the hierarchical structure of properties. When a mixin inherits from other mixins, properties must be prefixed with `-` to avoid confusion between inheritance chains and property declarations. This prefix is optional when there is no inheritance.
 
 **Why Use the `-` Prefix for Properties**
 
@@ -305,7 +305,7 @@ hybrid_car:
   - battery_capacity: 100 # Adds a new 'battery_capacity' property
 ```
 
-In this example, `hybrid_car` inherits the `engine` property from both `Vehicle` and `Motor`. Instead of a conflict, the properties are merged, along with its extra property hybrid, which the child mixin explicitly defines. The `battery_capacity` property is added uniquely to `hybrid_car`.
+In this example, `hybrid_car` inherits the `engine` property from both `Vehicle` and `Motor`. Instead of a conflict, the properties are merged, along with its extra property `hybrid`, which the child mixin explicitly defines. The `battery_capacity` property is added uniquely to `hybrid_car`.
 
 ## 3. Syntax and Grammar
 
@@ -323,7 +323,7 @@ MIXIN does not have its own unique lexical structure; instead, it directly adopt
   - **Tags**: YAML's type tags (e.g., `!!str`, `!!int`) are not supported, as MIXIN uses its own data type system.
   - **Complex Data Types**: Data types like sets, timestamps, and ordered mappings are not supported.
 
-- **TOML**: Supported in its JSON-compatible subset, which includes basic data types like strings, finite numbers, booleans, and dates, but excludes date / time datatypes.
+- **TOML**: Supported in its JSON-compatible subset, which includes basic data types like strings, finite numbers, booleans, and dates, but excludes date/time datatypes.
 
 By utilizing these existing formats, MIXIN ensures a seamless integration with widely-used data serialization standards, making it easy to define complex data structures and configurations.
 
@@ -423,30 +423,30 @@ Mixin names within files must follow these conventions based on their intended u
 
    - Use lowercase with underscores (e.g., `electric_vehicle`, `combined_person`) to represent specific instances or configurations and may inherit from multiple type-like mixins.
 
-### 4.3 Cross-File References
+### 4.3 Cross-File Inheritance
 
-MIXIN allows referencing mixins defined in different files. The rules for cross-file references are as follows:
+MIXIN allows inheriting mixins defined in different files. The rules for cross-file inheritance are as follows:
 
-1. **Reference Format**:
+1. **Inheritance Format**:
 
-   - A reference is represented as an array of strings, where each string corresponds to a segment in the path to the target mixin.
-   - The format for cross-file references is `[path, to, mixin_name]`, where `path` is the relative path from the current file to the target mixin, excluding the top-level directory name.
+   - An inheritance is represented as an array of strings, where each string corresponds to a segment in the path to the target mixin.
+   - The format for cross-file inheritance is `[path, to, mixin_name]`, where `path` is the relative path from the current file to the target mixin, excluding the top-level directory name.
 
 2. **Directory Scope**:
 
-   - Each directory has its own lexical scope. Files within the same directory can reference each other using just the file name and mixin name (e.g., `[file_name, mixin_name]`).
-   - Directories do not share scopes, meaning that each directory’s scope is independent. A mixin defined in one directory cannot directly reference a sibling directory’s mixin without specifying the correct path.
+   - Each directory has its own lexical scope. Files within the same directory can inherit each other using just the file name and mixin name (e.g., `[file_name, mixin_name]`).
+   - Directories do not share scopes, meaning that a mixin defined in one directory cannot directly inherit a sibling directory’s mixin without specifying the correct path.
 
 3. **Lexical Scope Resolution**:
 
-   - MIXIN automatically searches for references starting in the current directory. If not found, it searches in the parent directory, and then the parent's parent directory, continuing upwards until the root is reached.
-   - The first segment of the reference looks for the mixin name in the current lexical scope, which includes:
+   - MIXIN automatically searches for inheritances starting in the current directory. If not found, it searches in the parent directory, and then the parent's parent directory, continuing upwards until the root is reached.
+   - The first segment of the inheritance looks for the mixin name in the current lexical scope, which includes:
 
      - **Current File**: Mixins defined in the same file.
      - **Parent Mixins**: Mixins in the parent scope of the current mixin.
      - **Directory Scope**: Mixins defined directly in the current directory.
 
-   - Subsequent segments can reference properties in the inherited mixin hierarchy if the first segment resolves to a mixin in the scope.
+   - Subsequent segments can access properties in the inherited mixin hierarchy if the first segment resolves to a mixin in the scope.
 
 4. **Isolated File Scopes**:
 
@@ -456,7 +456,7 @@ MIXIN allows referencing mixins defined in different files. The rules for cross-
 
    - MIXIN does not support the `..` syntax to navigate to parent directories. Instead, the language automatically searches upward through the directory structure, starting from the current directory.
 
-#### 4.3.1 Example of Cross-File References
+#### 4.3.1 Example of Cross-File Inheritance
 
 **Directory Structure**:
 
@@ -486,8 +486,8 @@ Vehicle:
 
 ```yaml
 Electric:
-  - engine：
-       electric: true
+  - engine:
+      electric: true
   - battery_capacity: [Number]
 ```
 
@@ -504,73 +504,50 @@ Car:
 
 ```yaml
 test_car:
-  - [module, Car] # Cross-directory reference to Car in module/car.mixin.yaml
+  - [module, Car] # Cross-directory inheritance to Car in module/car.mixin.yaml
   - model: "Test Model"
   - test_battery:
-      - [module, Electric, battery_capacity] # Reference to battery_capacity in Electric
+      - [module, Electric, battery_capacity] # Inheritance to battery_capacity in Electric
 ```
 
 In this example:
 
-- The `test_car` mixin in `test_car.mixin.yaml` references `Car` and `Electric` in the `module` directory using the format `[module, Car]` and `[module, Electric, battery_capacity]`.
-- The first segment of the reference (`module`) indicates the directory in which the target mixins are located.
-- The reference format and scope rules ensure that mixins are correctly resolved based on the file and directory structure.
+- The `test_car` mixin in `test_car.mixin.yaml` inherits `Car` and `Electric` from the `module` directory using the format `[module, Car]` and `[module, Electric, battery_capacity]`.
+- The first segment of the inheritance (`module`) indicates the directory in which the target mixins are located.
+- The inheritance format and scope rules ensure that mixins are correctly resolved based on the file and directory structure.
 
-### 4.4 Best Practices for File Organization
 
-1. **Modular File Organization**:
-
-   - Organize mixin definitions into separate files based on functionality and domain, such as `vehicle.mixin.yaml` and `person.mixin.yaml`.
-   - Use directories to group related files, such as `src`, `tests`, and `examples`.
-
-2. **Clear Naming Conventions**:
-
-   - Ensure that file and mixin names clearly reflect their contents and purpose. Avoid using generic names that do not convey the mixin’s role.
-
-3. **Use of Directory Scope**:
-
-   - Take advantage of directory scope for organizing large projects. Define common mixins at the directory level and use file-level mixins for specific configurations or instances.
-
-4. **Avoid Excessive Cross-References**:
-
-   - Minimize the use of cross-file references to maintain modularity and reduce complexity. Use directory-level mixins to share common definitions.
-
-5. **Testing and Validation**:
-
-   - Regularly validate mixin files against the MIXIN JSON Schema to ensure correct syntax and structure.
-   - Use the MIXIN Nix runtime to test and evaluate mixin configurations before deployment.
-
-## 5. Scope and Reference Resolution
+## 5. Scope and Inheritance Resolution
 
 ### 5.1 Scope Definition
 
-In the MIXIN language, scope determines the visibility and reference relationships of mixins and properties within the current context. The scope structure includes sibling mixins, parent mixins, directory scope, and cross-file references.
+In the MIXIN language, scope determines the visibility and inheritance relationships of mixins and properties within the current context. The scope structure includes sibling mixins, parent mixins, directory scope, and cross-file inheritance.
 
 **Scope in MIXIN consists of the following levels**:
 
-- **Sibling Mixins**: The names of other mixins in the same file are visible in the current scope and can be referenced using the format `[mixin_name]`. References to sibling mixins take precedence over parent mixin references.
+- **Sibling Mixins**: The names of other mixins in the same file are visible in the current scope and can be inherited using the format `[mixin_name]`. Inheritance from sibling mixins takes precedence over parent mixin inheritance.
 
-- **Parent Mixins**: The names of all parent mixins in the current hierarchy are visible in the current scope. A mixin can access its parent mixins but not itself. If a property within a mixin references its containing mixin, it can do so because the containing mixin is in the enclosing scope.
+- **Parent Mixins**: The names of all parent mixins in the current hierarchy are visible in the current scope. A mixin can access its parent mixins but not itself. If a property within a mixin inherits its containing mixin, it can do so because the containing mixin is in the enclosing scope.
 
-- **Directory Scope**: A directory has a lexical scope that includes all mixins defined directly within that directory. Files within the directory can access mixins in the directory’s scope using the format `[directory_name, mixin_name]`.
+- **Directory Scope**: A directory has a lexical scope that includes all mixins defined directly within that directory. Files within the directory can inherit mixins in the directory’s scope using the format `[directory_name, mixin_name]`.
 
-- **Cross-File References**: When referencing mixins across different directories, the path must include the relative path from the current file to the target mixin.
+- **Cross-File Inheritance**: When inheriting mixins across different directories, the path must include the relative path from the current file to the target mixin.
 
 MIXIN does not distinguish between types and values. Any mixin can represent either a data value or a type. However, in practice, type-like mixins are usually named using the UpperCamelCase convention and represent structures or behaviors to be inherited. Value-like mixins are named using lowercase letters with underscores and typically represent individual values or instances.
 
-### 5.2 Reference Resolution and Inheritance
+### 5.2 Inheritance Resolution
 
-References in MIXIN are resolved **dynamically at the time of mixin evaluation or inheritance**. The first segment of the reference determines how the target is identified based on the current context.
+Inheritances in MIXIN are resolved **dynamically at the time of mixin evaluation or inheritance**. The first segment of the inheritance determines how the target is identified based on the current context.
 
 #### 5.2.1 First Segment Resolution
 
-- **First Segment is an Outer Mixin**: If the first segment references an outer mixin (e.g., `[Outer, sibling]`), it behaves like `Outer.this.sibling` in Java, meaning it explicitly references the `sibling` property of the `Outer` mixin. This is useful when you want to access a mixin defined in an enclosing scope.
+- **First Segment is an Outer Mixin**: If the first segment inherits an outer mixin (e.g., `[Outer, sibling]`), it behaves like `Outer.this.sibling` in Java, meaning it explicitly inherits the `sibling` property of the `Outer` mixin. This is useful when you want to access a mixin defined in an enclosing scope.
 
-- **First Segment is a Sibling Mixin**: If the first segment references a sibling mixin (e.g., `[sibling, sibling_property]`), it behaves like `this.sibling.sibling_property` in Java, meaning it references the `sibling` mixin in the current context and then accesses `sibling_property`. This allows you to reference mixins defined alongside the current mixin.
+- **First Segment is a Sibling Mixin**: If the first segment inherits a sibling mixin (e.g., `[sibling, sibling_property]`), it behaves like `this.sibling.sibling_property` in Java, meaning it inherits the `sibling` mixin in the current context and then accesses `sibling_property`. This allows you to inherit mixins defined alongside the current mixin.
 
 - **First Segment Resolution in Lexical Scope**:
 
-  - The first segment of the reference searches for the mixin name in the current lexical scope, which includes:
+  - The first segment of the inheritance searches for the mixin name in the current lexical scope, which includes:
 
     - **Current File**: Mixins defined within the same file.
 
@@ -582,13 +559,13 @@ References in MIXIN are resolved **dynamically at the time of mixin evaluation o
 
 #### 5.2.2 Subsequent Segment Resolution
 
-After resolving the first segment, subsequent segments can reference properties within the inherited mixin hierarchy.
+After resolving the first segment, subsequent segments can access properties within the inherited mixin hierarchy.
 
 - **Inherited Properties**: Subsequent segments can access properties inherited from parent mixins.
 
-- **Dynamic Resolution**: References are resolved dynamically, meaning that if inherited mixins are extended or overridden in the current context, the reference reflects these changes.
+- **Dynamic Resolution**: Inheritances are resolved dynamically, meaning that if inherited mixins are extended or overridden in the current context, the inheritance reflects these changes.
 
-#### 5.2.3 Reference Resolution Example
+#### 5.2.3 Inheritance Resolution Example
 
 Consider the following example:
 
@@ -599,31 +576,31 @@ OuterMixin:
 
 CurrentMixin:
   - [OuterMixin]
-  - reference_to_inner:
-      - [OuterMixin, inner_mixin]  # References 'inner_mixin' in 'OuterMixin'
-  - reference_to_sibling:
-      - [sibling_mixin, property]  # References 'property' in 'sibling_mixin'
+  - inheriting_inner:
+      - [OuterMixin, inner_mixin]  # Early binding to 'inner_mixin' in 'OuterMixin'
+  - inheriting_sibling:
+      - [sibling_mixin, property]  # Late binding to 'property' in 'sibling_mixin'
   sibling_mixin:
     property: "sibling value"
 ```
 
 In this example:
 
-- **`reference_to_inner`** uses `[OuterMixin, inner_mixin]`:
+- **`inheriting_inner`** inherits `[OuterMixin, inner_mixin]`:
 
   - **First Segment**: `OuterMixin`, which is an outer mixin in the current scope.
 
-  - **Resolution**: It behaves like `OuterMixin.this.inner_mixin`, accessing the `inner_mixin` defined in `OuterMixin`.
+  - **Resolution**: It behaves like `OuterMixin.this.inner_mixin`, inheriting the `inner_mixin` defined in `OuterMixin`.
 
-- **`reference_to_sibling`** uses `[sibling_mixin, property]`:
+- **`inheriting_sibling`** inherits `[sibling_mixin, property]`:
 
   - **First Segment**: `sibling_mixin`, which is a sibling mixin defined in the same file.
 
-  - **Resolution**: It behaves like `this.sibling_mixin.property`, accessing the `property` in `sibling_mixin`.
+  - **Resolution**: It behaves like `this.sibling_mixin.property`, inheriting the `property` in `sibling_mixin`.
 
-#### 5.2.4 Cross-Directory References
+#### 5.2.4 Cross-Directory Inheritance
 
-When referencing mixins across different directories, the path must include relative path segments:
+When inheriting mixins across different directories, the path must include relative path segments:
 
 ```yaml
 - [path, to, mixin_name, property]
@@ -631,7 +608,7 @@ When referencing mixins across different directories, the path must include rela
 
 - **First Segment**: `path` is interpreted relative to the directory structure of the current file.
 
-- **Resolution**: MIXIN will automatically search for the referenced mixin by traversing the directory hierarchy.
+- **Resolution**: MIXIN will automatically search for the inherited mixin by traversing the directory hierarchy.
 
 ### 5.3 Multiple Inheritance and Scalar Value Handling
 
@@ -650,16 +627,17 @@ Vehicle:
   - engine: {}
 
 Motor:
-  - engine: {}
+  - engine:
+      gasoline: true # Scalar value for 'engine'
 
 # advanced_features.mixin.yaml
 hybrid_car:
   - ["basic_features", Vehicle]
   - ["basic_features", Motor]
-  - wheels: 4 # Defines the scalar value for 'wheels'
+  - wheels: 4 # Scalar value for 'wheels'
   - engine: # Merging with 'Vehicle.engine'
       hybrid: true
-  - battery_capacity: 100 # Adds a new 'battery_capacity' property
+  - battery_capacity: 100 # New property
 ```
 
 In this example:
@@ -773,9 +751,9 @@ In this example:
 - **Resulting Properties**:
   - Combines properties `wheels`, `engine`, and `battery_capacity` in `hybrid_car`.
 
-### 6. Binding Rules and Examples
+## 6. Binding Rules and Examples
 
-References in MIXIN can be resolved using either **early binding** or **late binding** mechanisms. Understanding these binding rules is crucial for determining how mixins and properties are inherited and resolved during evaluation. The following example illustrates the differences between early and late binding within a single mixin structure.
+Inheritances in MIXIN can be resolved using either **early binding** or **late binding** mechanisms. Understanding these binding rules is crucial for determining how mixins and properties are inherited and resolved during evaluation. The following example illustrates the differences between early and late binding within a single mixin structure.
 
 ### 6.1 Example
 
@@ -803,47 +781,46 @@ test_binding:
 
 #### 6.2.1 Early Binding
 
-- **Definition**: Early binding resolves references at the time of mixin definition. The reference remains fixed and does not change even if the mixin is inherited or extended in different contexts.
+- **Definition**: Early binding resolves inheritances at the time of mixin definition. The inheritance remains fixed and does not change even if the mixin is inherited or extended in different contexts.
 
 - **Behavior in Example**:
 
-  - `test_binding.my_mixin1.early_binding` references `[test_binding, my_mixin1, inner]`. This means it always points to the original `inner` mixin defined within `my_mixin1`, regardless of how `my_mixin1` is inherited or extended.
+  - `test_binding.my_mixin1.early_binding` inherits `[test_binding, my_mixin1, inner]`. This means it always points to the original `inner` mixin defined within `my_mixin1`, regardless of how `my_mixin1` is inherited or extended.
 
 - **Result**:
 
-  - `test_binding.my_mixin2.early_binding` contains only `field1` because it references the original `my_mixin1.inner`, which has only `field1`. It does not adapt to the additional `field2` added in `my_mixin2.inner`.
+  - `test_binding.my_mixin2.early_binding` contains only `field1` because it inherits the original `my_mixin1.inner`, which has only `field1`. It does not adapt to the additional `field2` added in `my_mixin2.inner`.
 
 #### 6.2.2 Late Binding
 
-- **Definition**: Late binding resolves references dynamically at the time of mixin evaluation or inheritance. The reference adapts to the current context, including any changes made through inheritance or property merging.
+- **Definition**: Late binding resolves inheritances dynamically at the time of mixin evaluation or inheritance. The inheritance adapts to the current context, including any changes made through inheritance or property merging.
 
 - **Behavior in Example**:
 
-  - `test_binding.my_mixin1.late_binding` references `[my_mixin1, inner]`. When inherited by `my_mixin2`, this reference dynamically resolves to `my_mixin2.inner`, which includes both `field1` and `field2`.
+  - `test_binding.my_mixin1.late_binding` inherits `[my_mixin1, inner]`. When inherited by `my_mixin2`, this inheritance dynamically resolves to `my_mixin2.inner`, which includes both `field1` and `field2`.
 
-  - Similarly, `test_binding.my_mixin1.late_binding_too` references `[inner]` within the same mixin. When inherited by `my_mixin2`, it also resolves to `my_mixin2.inner`, which now contains both `field1` and `field2`.
+  - Similarly, `test_binding.my_mixin1.late_binding_too` inherits `[inner]` within the same mixin. When inherited by `my_mixin2`, it also resolves to `my_mixin2.inner`, which now contains both `field1` and `field2`.
 
 - **Result**:
 
-  - Both `test_binding.my_mixin2.late_binding` and `test_binding.my_mixin2.late_binding_too` contain both `field1` and `field2`, as the late-bound references adapt to the current context of `my_mixin2.inner`.
-    Here is the continuation of the translation for sections 6.2.3, 6.3, and 6.4:
+  - Both `test_binding.my_mixin2.late_binding` and `test_binding.my_mixin2.late_binding_too` contain both `field1` and `field2`, as the late-bound inheritances adapt to the current context of `my_mixin2.inner`.
 
 ### 6.2.3 Key Observations
 
 1. **Early Binding**:
 
-   - **Fixed Reference**: Always points to the originally defined mixin or property.
-   - **Example Behavior**: `test_binding.my_mixin2.early_binding` only includes `field1` because it references the original `my_mixin1.inner` and does not adapt to changes in `my_mixin2`.
+   - **Fixed Inheritance**: Always points to the originally defined mixin or property.
+   - **Example Behavior**: `test_binding.my_mixin2.early_binding` only includes `field1` because it inherits the original `my_mixin1.inner` and does not adapt to changes in `my_mixin2`.
 
 2. **Late Binding**:
 
-   - **Dynamic Reference**: Adapts to the current mixin context, including any inherited or merged properties.
-   - **Example Behavior**: Both `test_binding.my_mixin2.late_binding` and `test_binding.my_mixin2.late_binding_too` include both `field1` and `field2` because they reference `my_mixin2.inner`, which dynamically includes all fields.
+   - **Dynamic Inheritance**: Adapts to the current mixin context, including any inherited or merged properties.
+   - **Example Behavior**: Both `test_binding.my_mixin2.late_binding` and `test_binding.my_mixin2.late_binding_too` include both `field1` and `field2` because they inherit `my_mixin2.inner`, which dynamically includes all fields.
 
 3. **The First Segment Determines the Resolution Method**:
 
-   - If the first segment references an outer mixin (e.g., `[test_binding, my_mixin1, inner]`), it uses early binding, behaving like an explicit reference to a specific mixin.
-   - If the first segment references a sibling mixin or the current context (e.g., `[my_mixin1, inner]` or `[inner]`), it uses late binding and is dynamically resolved based on the current mixin’s inheritance and context.
+   - If the first segment inherits an outer mixin (e.g., `[test_binding, my_mixin1, inner]`), it uses early binding, behaving like an explicit inheritance to a specific mixin.
+   - If the first segment inherits a sibling mixin or the current context (e.g., `[my_mixin1, inner]` or `[inner]`), it uses late binding and is dynamically resolved based on the current mixin’s inheritance and context.
 
 ### 6.3 Practical Guidelines
 
@@ -851,21 +828,21 @@ To effectively use early and late binding in MIXIN:
 
 - **Use Early Binding When**:
 
-  - You need a reference to always point to a specific mixin or property, regardless of how the mixin is inherited or extended.
+  - You need an inheritance to always point to a specific mixin or property, regardless of how the mixin is inherited or extended.
   - You want to ensure that a property remains constant and unaffected by changes in the inheritance hierarchy.
 
 - **Use Late Binding When**:
-  - You want references to adapt dynamically based on the context in which the mixin is used.
+  - You want inheritances to adapt dynamically based on the context in which the mixin is used.
   - You are building mixins intended for reuse and extension, where properties may be added or merged.
 
 ### 6.4 Summary
 
-In MIXIN, choosing between early and late binding allows you to control how references are resolved during inheritance and evaluation:
+In MIXIN, choosing between early and late binding allows you to control how inheritances are resolved during inheritance and evaluation:
 
-- **Early Binding**: Ensures a fixed reference that remains constant across all contexts.
+- **Early Binding**: Ensures a fixed inheritance that remains constant across all contexts.
 - **Late Binding**: Provides flexibility by adapting to the current context, making it suitable for dynamic and extensible mixin definitions.
 
-By understanding these binding rules and how the first segment of a reference determines the resolution mechanism, you can design mixins that behave predictably and flexibly, depending on your use case.
+By understanding these binding rules and how the first segment of an inheritance determines the resolution mechanism, you can design mixins that behave predictably and flexibly, depending on your use case.
 
 ## 7. Appendices
 
@@ -873,7 +850,7 @@ This section provides additional resources and references to aid in the understa
 
 ### 7.1 JSON Schema Reference
 
-The following JSON Schema defines the structure of MIXIN files. It specifies the types and constraints for mixin definitions, including references, properties, and inheritance rules. This schema is useful for validating MIXIN files to ensure they conform to the expected format.
+The following JSON Schema defines the structure of MIXIN files. It specifies the types and constraints for mixin definitions, including inheritances, properties, and inheritance rules. This schema is useful for validating MIXIN files to ensure they conform to the expected format.
 
 ```json
 {
@@ -881,13 +858,13 @@ The following JSON Schema defines the structure of MIXIN files. It specifies the
   "title": "MIXIN Language Schema",
   "$ref": "#/definitions/mixin",
   "definitions": {
-    "reference": {
+    "inheritance": {
       "type": "array",
       "items": {
         "type": "string"
       },
       "minItems": 1,
-      "description": "A MIXIN reference, represented as an array of strings."
+      "description": "An inheritance, represented as an array of strings."
     },
     "properties": {
       "type": "object",
@@ -896,19 +873,19 @@ The following JSON Schema defines the structure of MIXIN files. It specifies the
         "$ref": "#/definitions/mixin"
       }
     },
-    "inheritancesAndOwnProperties": {
+    "inheritanceAndOwnProperties": {
       "type": "array",
       "description": "An array representing a combination of super mixins, properties, or nested structures.",
       "items": {
         "oneOf": [
           {
-            "$ref": "#/definitions/reference"
+            "$ref": "#/definitions/inheritance"
           },
           {
             "$ref": "#/definitions/properties"
           },
           {
-            "$ref": "#/definitions/inheritancesAndOwnProperties"
+            "$ref": "#/definitions/inheritanceAndOwnProperties"
           }
         ]
       }
@@ -917,13 +894,13 @@ The following JSON Schema defines the structure of MIXIN files. It specifies the
       "description": "A mixin",
       "oneOf": [
         {
-          "$ref": "#/definitions/reference"
+          "$ref": "#/definitions/inheritance"
         },
         {
           "$ref": "#/definitions/properties"
         },
         {
-          "$ref": "#/definitions/inheritancesAndOwnProperties"
+          "$ref": "#/definitions/inheritanceAndOwnProperties"
         },
         {
           "type": "string"
@@ -945,9 +922,9 @@ The following JSON Schema defines the structure of MIXIN files. It specifies the
 
 #### Explanation of the Schema
 
-- **Reference**:
+- **Inheritance**:
 
-  - Represents a reference to another mixin or module. Defined as an array of strings. This format is used to point to other mixins within the same file or across files.
+  - Represents an inheritance to another mixin or module. Defined as an array of strings. This format is used to point to other mixins within the same file or across files.
   - Example: `[module_name, mixin_name]` or `[file_name, mixin_name]`.
 
 - **Properties**:
@@ -961,7 +938,7 @@ The following JSON Schema defines the structure of MIXIN files. It specifies the
       is_employed: true
     ```
 
-- **Inheritances and Own Properties**:
+- **Inheritance and Own Properties**:
 
   - Represents a combination of inheritance and property definitions within a mixin. This allows a mixin to inherit from other mixins while also defining its own properties.
   - Example:
@@ -973,7 +950,8 @@ The following JSON Schema defines the structure of MIXIN files. It specifies the
     ```
 
 - **Mixin**:
-  - Represents a mixin definition. A mixin can be a reference to another mixin, a set of properties, or a combination of inheritance and properties.
+
+  - Represents a mixin definition. A mixin can be an inheritance to another mixin, a set of properties, or a combination of inheritance and properties.
 
 This schema provides a structured way to define and validate mixins in the MIXIN language, ensuring consistency and correct syntax across different files and formats.
 
@@ -981,26 +959,32 @@ This schema provides a structured way to define and validate mixins in the MIXIN
 
 This section provides definitions of key terms used in the MIXIN language specification.
 
-- **Mixin**: The fundamental building block in the MIXIN language. It represents a reusable unit that can contain properties, references, or scalar values. Mixins can be inherited, composed, and combined to form complex data structures and logic.
+- **Mixin**: The fundamental building block in the MIXIN language. It represents a reusable unit that can contain properties, inheritances, or scalar values. Mixins can be inherited, composed, and combined to form complex data structures and logic.
 
-- **Inheritances**: A mechanism for pointing to another mixin or module. An inheritance is represented as arrays of strings, indicating the path to the target mixin. They support both early and late binding. Inheritance in MIXIN is conflict-free, allowing multiple parent mixins to be combined without error.
+- **Inheritance**: A mechanism for pointing to another mixin or module. An inheritance is represented as an array of strings, indicating the path to the target mixin. Inheritance in MIXIN is conflict-free, allowing multiple parent mixins to be combined without error.
 
 - **Property**: A named value within a mixin. Properties are named mixins, containing scalar values (e.g., strings, numbers), inheritances to other mixins, or nested properties. Properties define the internal structure or behavior of a mixin.
 
 - **Scalar Value**: A single, indivisible value within a mixin, such as a string, number, boolean, or null. Scalar values can be merged with other properties in a mixin.
 
-- **Early Binding**: A type of reference resolution where the reference is resolved at the time of mixin definition. The reference remains fixed, regardless of changes in inheritance or context.
+- **Early Binding**: A type of inheritance resolution where the inheritance is resolved at the time of mixin definition. The inheritance remains fixed, regardless of changes in inheritance or context.
 
-- **Late Binding**: A type of reference resolution where the reference is dynamically resolved at the time of mixin evaluation or inheritance. This allows references to adapt to changes in the inheritance hierarchy.
+- **Late Binding**: A type of inheritance resolution where the inheritance is dynamically resolved at the time of mixin evaluation or inheritance. This allows inheritances to adapt to changes in the inheritance hierarchy.
 
 - **Lexical Scope**: The context in which a mixin or property is defined. The lexical scope determines the visibility of mixins and properties within a file, directory, or project.
 
-- **Directory Scope**: The scope defined by a directory. All mixins within a directory are part of the directory scope, and files within the directory can reference each other using the directory scope.
+- **Directory Scope**: The scope defined by a directory. All mixins within a directory are part of the directory scope, and files within the directory can inherit mixins using the directory scope.
 
-- **Cross-File Reference**: A reference that points to a mixin defined in a different file. The reference format includes the file name and mixin name, and MIXIN will automatically search for the target mixin within the directory hierarchy.
+- **Cross-File Inheritance**: An inheritance that points to a mixin defined in a different file. The inheritance format includes the file name and mixin name, and MIXIN will automatically search for the target mixin within the directory hierarchy.
 
-- **Schema**: A JSON Schema definition that describes the structure of a MIXIN file. The schema defines the types, constraints, and relationships between mixins, properties, and references.
+- **Schema**: A JSON Schema definition that describes the structure of a MIXIN file. The schema defines the types, constraints, and relationships between mixins, properties, and inheritances.
 
 - **File Format**: The supported formats for defining MIXIN source code. MIXIN supports YAML, JSON, and TOML, with restrictions to ensure compatibility with JSON serialization.
 
 - **Naming Convention**: The rules for naming mixins and files in the MIXIN language. These conventions help distinguish between type-like mixins, value-like mixins, and instances, and ensure clarity and consistency in code organization.
+
+- **Conflict-Free Inheritance**: MIXIN's approach to inheritance ensures that properties and scalar values from multiple parents are merged seamlessly without conflicts. This model eliminates issues commonly associated with multiple inheritance in other languages, such as the diamond problem.
+
+- **Property Merging**: The process by which properties with the same name from multiple parent mixins are automatically combined into the child mixin without causing conflicts.
+
+- **Inheritance Hierarchy**: The structure formed by mixins inheriting from other mixins, creating a tree-like or graph-like relationship that defines how properties and inheritances are propagated.
