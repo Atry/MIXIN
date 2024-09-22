@@ -289,21 +289,23 @@ In MIXIN, properties with the same name defined in multiple parent mixins are al
 # basic_features.mixin.yaml
 Vehicle:
   - wheels: [Number]
-  - engine: "gasoline" # Defines a default scalar value for 'engine'
+  - engine: {}
 
 Motor:
-  - engine: [String] # Defines the type of the 'engine' property
+  - engine:
+      gasoline: true # Defines a default scalar value for 'engine'
 
 # advanced_features.mixin.yaml
 hybrid_car:
   - ["basic_features", Vehicle]
   - ["basic_features", Motor]
   - wheels: 4 # Defines the scalar value for 'wheels'
-  - engine: "hybrid" # Defines the scalar value for 'engine'
+  - engine:
+      hybrid: true # Defines the scalar value for 'engine'
   - battery_capacity: 100 # Adds a new 'battery_capacity' property
 ```
 
-In this example, `hybrid_car` inherits the `engine` property from both `Vehicle` and `Motor`. Instead of a conflict, the properties are merged, and the scalar value is set to `"hybrid"`, which the child mixin explicitly defines. The `battery_capacity` property is added uniquely to `hybrid_car`.
+In this example, `hybrid_car` inherits the `engine` property from both `Vehicle` and `Motor`. Instead of a conflict, the properties are merged, along with its extra property hybrid, which the child mixin explicitly defines. The `battery_capacity` property is added uniquely to `hybrid_car`.
 
 ## 3. Syntax and Grammar
 
@@ -476,7 +478,7 @@ project/
 
 ```yaml
 Vehicle:
-  engine_type: [String]
+  engine: {}
   wheels: [Number]
 ```
 
@@ -484,7 +486,8 @@ Vehicle:
 
 ```yaml
 Electric:
-  - engine_type: "electric"
+  - engine：
+       electric: true
   - battery_capacity: [Number]
 ```
 
@@ -644,10 +647,10 @@ When a mixin inherits from multiple parent mixins, the properties from all paren
 # basic_features.mixin.yaml
 Vehicle:
   - wheels: [Number]
-  - engine_type: [String] # Defines a default scalar value for 'engine_type'
+  - engine: {}
 
 Motor:
-  - engine_type: [String] # Defines the type of the 'engine' property
+  - engine: {}
 
 # advanced_features.mixin.yaml
 hybrid_car:
@@ -664,10 +667,10 @@ In this example:
 - **Inheritance**:
   - `hybrid_car` inherits from both `Vehicle` and `Motor`.
 - **Property Merging**:
-  - The `engine_type` property is defined in both parent mixins.
-  - MIXIN automatically merges the `engine_type` property without conflict.
+  - The `engine` property is defined in both parent mixins.
+  - MIXIN automatically merges the `engine` property without conflict.
 - **Resulting Properties**:
-  - `hybrid_car` has access to all properties from both parents: `wheels`, `engine_type`, and `battery_capacity`.
+  - `hybrid_car` has access to all properties from both parents: `wheels`, `engine`, and `battery_capacity`.
 
 #### 5.3.2 Scalar Value Merging
 
@@ -749,7 +752,7 @@ Vehicle:
       gasoline: true # Scalar value for 'engine'
 
 Motor:
-  - engine: [String] # Defines 'engine' property
+  - engine: {} # Defines 'engine' property
 
 # advanced_features.mixin.yaml
 hybrid_car:
