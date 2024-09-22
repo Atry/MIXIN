@@ -323,7 +323,7 @@ MIXIN does not have its own unique lexical structure; instead, it directly adopt
   - **Tags**: YAML's type tags (e.g., `!!str`, `!!int`) are not supported, as MIXIN uses its own data type system.
   - **Complex Data Types**: Data types like sets, timestamps, and ordered mappings are not supported.
 
-- **TOML**: Supported in its JSON-compatible subset, which includes basic data types like strings, numbers, booleans, and dates, but excludes complex table hierarchies and mixed-type arrays.
+- **TOML**: Supported in its JSON-compatible subset, which includes basic data types like strings, finite numbers, booleans, and dates, but excludes date / time datatypes.
 
 By utilizing these existing formats, MIXIN ensures a seamless integration with widely-used data serialization standards, making it easy to define complex data structures and configurations.
 
@@ -368,10 +368,10 @@ value = 42
 is_active = true
 ```
 
-**Unsupported TOML Syntax** (mixed-type arrays):
+**Unsupported TOML Syntax** (time):
 
 ```toml
-data = [1, "two", 3.0]
+data = 23:22:21.0123
 ```
 
 ## 4. File Structure and Formats
