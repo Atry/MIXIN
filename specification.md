@@ -983,11 +983,9 @@ This section provides definitions of key terms used in the MIXIN language specif
 
 - **Mixin**: The fundamental building block in the MIXIN language. It represents a reusable unit that can contain properties, references, or scalar values. Mixins can be inherited, composed, and combined to form complex data structures and logic.
 
-- **Reference**: A mechanism for pointing to another mixin or module. References are represented as arrays of strings, indicating the path to the target mixin. They support both early and late binding.
+- **Inheritances**: A mechanism for pointing to another mixin or module. An inheritance is represented as arrays of strings, indicating the path to the target mixin. They support both early and late binding. Inheritance in MIXIN is conflict-free, allowing multiple parent mixins to be combined without error.
 
-- **Property**: A named value within a mixin. Properties can be scalar values (e.g., strings, numbers) or references to other mixins. Properties define the internal structure or behavior of a mixin.
-
-- **Inheritance**: The process by which a mixin includes the properties and behaviors of another mixin. Inheritance in MIXIN is conflict-free, allowing multiple parent mixins to be combined without error.
+- **Property**: A named value within a mixin. Properties are named mixins, containing scalar values (e.g., strings, numbers), inheritances to other mixins, or nested properties. Properties define the internal structure or behavior of a mixin.
 
 - **Scalar Value**: A single, indivisible value within a mixin, such as a string, number, boolean, or null. Scalar values can be merged with other properties in a mixin.
 
