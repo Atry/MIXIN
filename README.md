@@ -4,7 +4,7 @@ See also [MIXIN Language Specification](specification.md).
 
 ## 简介
 
-**MIXIN**（Multi-language Interoperable eXtensive Interface Notion）是一种基于 YAML、JSON 和 TOML 的编程语言，旨在通过 mixin 的组合和配置来表达所有逻辑和数据结构。MIXIN 支持多语言互操作性，允许在不同平台上高效执行计算图。目前，MIXIN 主要通过 Nix 实现其运行时和 JIT 编译器，将 MIXIN 编译为 Nix 表达式。
+**MIXIN**（Multi-language Interoperable eXtensible Interface Notion）是一种基于 YAML、JSON 和 TOML 的编程语言，旨在通过 mixin 的组合和配置来表达所有逻辑和数据结构。MIXIN 支持多语言互操作性，允许在不同平台上高效执行计算图。目前，MIXIN 主要通过 Nix 实现其运行时和 JIT 编译器，将 MIXIN 编译为 Nix 表达式。
 
 ## 基本概念
 
