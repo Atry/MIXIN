@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-MIXIN (Multi-language Interoperable eXtensive Interface Notion) is a programming language designed to facilitate the flexible composition and configuration of logic and data structures through the use of _mixins_. Unlike traditional programming languages that use classes or functions as the primary building blocks, MIXIN employs a unified concept where everything is represented as a mixin. This approach allows for greater modularity, reusability, and flexibility.
+MIXIN (Multi-language Interoperable eXtensible Interface Notion) is a programming language designed to facilitate the flexible composition and configuration of logic and data structures through the use of _mixins_. Unlike traditional programming languages that use classes or functions as the primary building blocks, MIXIN employs a unified concept where everything is represented as a mixin. This approach allows for greater modularity, reusability, and flexibility.
 
 MIXIN is a lazily-evaluated, immutable language, meaning that values are only computed when necessary, and once created, they cannot be changed. This design makes MIXIN particularly well-suited for applications that require functional purity, such as configuration management, domain-specific language (DSL) creation, and code generation.
 
